@@ -20,8 +20,5 @@
     .
   </p>
 </div>
-<div align="center">
-    <img src="images/example.png" alt="Logo" width="640" height="640">
-  </div>
   
 
