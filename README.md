@@ -10,9 +10,6 @@
   <p align="center">
     An awesome video, music & torrent downloader & Cloud file handler!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
     <a href="https://github.com/Asur2-5356202/AsurDownloader">View Demo</a>
     ·
     <a href="https://github.com/Asur2-5356202/AsurDownloader/issues">Report Bug</a>
