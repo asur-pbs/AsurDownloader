@@ -15,5 +15,7 @@
     <a href="https://github.com/Asur2-5356202/AsurDownloader/issues">Report Bug</a>
     ·
     <a href="https://github.com/Asur2-5356202/AsurDownloader/issues">Request Feature</a>
+    .
+    <a href="https://github.com/Asur2-5356202/AsurDownloader/releases">Releases</a>
   </p>
 </div>
