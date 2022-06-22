@@ -10,12 +10,13 @@
   <p align="center">
     An awesome video, music & torrent downloader & Cloud file handler!
     <br />
-    <a href="https://github.com/Asur2-5356202/AsurDownloader">View Demo</a>
+    <a href="https://github.com/Asur2-5356202/AsurDownloader/blob/main/Asur%20Downloader.bat">View source code</a>
     ·
     <a href="https://github.com/Asur2-5356202/AsurDownloader/issues">Report Bug</a>
     ·
     <a href="https://github.com/Asur2-5356202/AsurDownloader/issues">Request Feature</a>
     .
     <a href="https://github.com/Asur2-5356202/AsurDownloader/releases">Releases</a>
+    .
   </p>
 </div>
