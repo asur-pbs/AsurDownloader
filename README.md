@@ -2,10 +2,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template](https://github.com/Asur2-5356202/AsurDownloader">
-    <img src="" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Asur Downloader</h3>
 
   <p align="center">
     An awesome README template to jumpstart your projects!
