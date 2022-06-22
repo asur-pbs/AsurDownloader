@@ -38,7 +38,6 @@
   </ol>
 </details>
 
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 This is a small program which wrote with batch programming in order to make easy to use yt-dlp, ffmpeg, aria2 and etc.
@@ -56,3 +55,17 @@ This is a small program which wrote with batch programming in order to make easy
 * [gdrive](https://github.com/prasmussen/gdrive)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+## Installation
+
+1) Download zip file by release
+2) Extract files in to folder
+3) Install python
+4) After run pip install spotdl
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Usage
+
+
+
