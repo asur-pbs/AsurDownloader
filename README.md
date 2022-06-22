@@ -1,22 +1,22 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template](https://github.com/Asur2-5356202/AsurDownloader">
+  <a href="https://github.com/Asur2-5356202/AsurDownloader">
     <img src="images/logo.png" alt="Logo" width="100" height="100">
   </a>
 
   <h3 align="center">Asur Downloader</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An awesome video, music & torrent downloader & Cloud file handler!
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/Asur2-5356202/AsurDownloader">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/Asur2-5356202/AsurDownloader/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/Asur2-5356202/AsurDownloader/issues">Request Feature</a>
   </p>
 </div>
