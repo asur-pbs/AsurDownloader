@@ -58,14 +58,11 @@ This is a small program which wrote with batch programming in order to make easy
 
 ## Installation
 
-1) Download zip file by release
+1) Download released package
 2) Extract files in to folder
 3) Install python
 4) After run pip install spotdl
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-## Usage
-
 
 
