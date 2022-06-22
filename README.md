@@ -35,6 +35,24 @@
       <a href="#installation">Installation</a>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+This is a small program which wrote with batch programming in order to make easy to use yt-dlp, ffmpeg, aria2 and etc.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Built With
+
+* [Spotdl](https://nextjs.org/)
+* [Aria2](https://aria2.github.io)
+* [YT-DLP](https://github.com/yt-dlp/yt-dlp)
+* [Youtube-dl](https://github.com/ytdl-org/youtube-dl)
+* [FFmpeg](https://ffmpeg.org)
+* [Bento4](https://www.bento4.com)
+* [gdrive](https://github.com/prasmussen/gdrive)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
