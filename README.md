@@ -20,3 +20,8 @@
     .
   </p>
 </div>
+<div align="center">
+    <img src="images/example.png" alt="Logo" width="100" height="100">
+  </div>
+  
+
