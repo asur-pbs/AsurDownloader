@@ -21,7 +21,7 @@
   </p>
 </div>
 <div align="center">
-    <img src="images/example.png" alt="Logo" width="100" height="100">
+    <img src="images/example.png" alt="Logo" width="360" height="360">
   </div>
   
 
