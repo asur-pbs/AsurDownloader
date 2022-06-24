@@ -60,13 +60,12 @@ echo                  ^|[32m                                                   
 echo                  ^|[32m      [6] Spotify Downloader (Hi-fi or 320 kbps with lyrics)   [0m^|
 echo                  ^|[32m         (Only for youtube music available countries)          [0m^|
 echo                  ^|[32m         (Other users, use a vpn)                              [0m^|
-echo                  ^|[32m      [7] Download Manager(Torrent also)                       [0m^|
+echo                  ^|[32m      [7] Deezer Music Downlaoder                              [0m^|
 echo                  ^|[32m                                                               [0m^|
-echo                  ^|[32m      [8] Update                                               [0m^|
+echo                  ^|[32m      [8] Download Manager(Torrent also)                       [0m^|
 echo                  ^|[32m                                                               [0m^|
-echo                  ^|[32m      [9] Requirments                                          [0m^|
+echo                  ^|[32m      [#] Update                                               [0m^|
 echo                  ^|[32m                                                               [0m^|
-echo                  ^|[32m      [9] Readi it                                             [0m^|
 echo                  ^|      ___________________________________________________      ^|
 echo                  ^|                                                               ^|
 echo                  ^|[36m      [a] Read it          [b] Requirments        [c] Quit     [0m^|
@@ -75,7 +74,7 @@ echo                  ^|________________________________________________________
 echo.
 echo.
 echo.
-echo [1mEnter choice [0/1/2/3/4/5/6/7/8/9/10/a/b/c][0m
+echo [1mEnter choice [0/1/2/3/4/5/6/7/8/#/*/-/10/a/b/c][0m
 set /p choice="Choice: "
 echo.
 if /I "[%choice%]"=="[0]" goto :Chec
@@ -85,10 +84,9 @@ if /I "[%choice%]"=="[3]" goto :yt
 if /I "[%choice%]"=="[4]" goto :zd
 if /I "[%choice%]"=="[5]" goto :gd
 if /I "[%choice%]"=="[6]" goto :spotd
-if /I "[%choice%]"=="[7]" goto :torrent
-if /I "[%choice%]"=="[8]" goto :upyt
-if /I "[%choice%]"=="[9]" goto :sp
-if /I "[%choice%]"=="[10]" goto :rs
+if /I "[%choice%]"=="[7]" goto :dfi
+if /I "[%choice%]"=="[8]" goto :torrent
+if /I "[%choice%]"=="[#]" goto :upyt
 if /I "[%choice%]"=="[a]" goto :rs
 if /I "[%choice%]"=="[b]" goto :sp
 echo.
@@ -104,7 +102,7 @@ echo                   ^|                        Check link                     
 echo                   ^|____________________________________________________________^|
 echo.
 set /p check1=Enter url here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %check1%
+yt-dlp --list-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %check1%
 echo a - Go to Main Menu
 echo b - Exit
 set /p choice="Choice: "
@@ -115,7 +113,7 @@ goto :Asur_MENU
 
 :Drm
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                                           Protected Downloader         
 echo                  __________________________________________________________________
 echo                  ^|                                                                ^|
@@ -160,7 +158,7 @@ if /I "[%ch%]"=="[a]" goto :Asur_MENU
 
 :mpanc12
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|         Protected only audio file download (not cenc)      ^|
@@ -171,9 +169,9 @@ echo.
 set /p mpd=Enter url here :
 set /p hex=Enter audio Key:
 set /p name=Output video name:
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
 set /p ad=Enter audio id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%
 ffmpeg -hide_banner -t duration -decryption_key %hex% -i "%UserProfile%/videos/cdncache/encrypted_audio.m4a" -codec copy "%UserProfile%/videos/cdncache/decrypted_audio.m4a"
 move %UserProfile%/videos/cdncache/decrypted_audio.m4a" "%UserProfile%/downloads"
 ren "%UserProfile%/downloads/decrypted_audio.m4a" "%UserProfile%/downloads/%name%.m4a"
@@ -197,7 +195,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :mpac12
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|         Protected only audio file download (cenc)          ^|
@@ -208,9 +206,9 @@ set /p mpd=Enter url here :
 set /p kid=Enter kid key: 
 set /p hex=Enter hex Key:
 set /p name=Output video name:
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
 set /p ad=Enter audio id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%
 mp4decrypt --key %kid%:%hex% "%UserProfile%/videos/cdncache/encrypted_audio.m4a" "%UserProfile%/videos/cdncache/decrypted_audio.m4a"
 move %UserProfile%/videos/cdncache/decrypted_audio.m4a" "%UserProfile%/downloads"
 ren "%UserProfile%/downloads/decrypted_audio.m4a" "%UserProfile%/downloads/%name%.m4a"
@@ -234,7 +232,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :mpvnc12
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|         Protected only video file download (not cenc)      ^|
@@ -244,9 +242,9 @@ echo [32m*For several sources, The both files key is hex key                   
 set /p mpd=Enter url here :
 set /p hex=Enter video Key:
 set /p name=Output video name:
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
 set /p vd=Enter video id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
 ffmpeg -hide_banner -t duration -decryption_key %hex% -i "%UserProfile%/videos/cdncache/encrypted_video.mp4" -codec copy "%UserProfile%/videos/cdncache/decrypted_video.mp4"
 move %UserProfile%/videos/cdncache/decrypted_audio.m4a" "%UserProfile%/downloads"
 ren "%UserProfile%/downloads/decrypted_video.mp4" "%UserProfile%/downloads/%name%.mp4"
@@ -270,7 +268,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :mpvc12
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|         Protected only video file download (cenc)          ^|
@@ -281,9 +279,9 @@ set /p mpd=Enter url here :
 set /p kid=Enter kid key: 
 set /p hex=Enter hex Key:
 set /p name=Output video name:
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
 set /p vd=Enter video id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
 mp4decrypt --key %kid%:%hex% "%UserProfile%/videos/cdncache/encrypted_audio.mp4" "%UserProfile%/videos/cdncache/decrypted_video.mp4"
 move %UserProfile%/videos/cdncache/decrypted_audio.mp4" "%UserProfile%/downloads"
 ren "%UserProfile%/downloads/decrypted_audio.mp4" "%UserProfile%/downloads/%name%.mp4"
@@ -309,7 +307,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :mpd1c
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                   __________________________________________________________________
 echo                  ^|                                                                 ^|
 echo                  ^|MPD Link DRM  files which have audio and video file types (cenc) ^|
@@ -320,12 +318,12 @@ set /p mpd=Enter url here :
 set /p kid=Enter kid key: 
 set /p hex=Enter hex Key:
 set /p name=Output video name:
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
 set /p vd=Enter video id here :
 set /p ad=Enter audio id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
 cd
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%                                              [0m
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%                                              [0m
 mp4decrypt --key %kid%:%hex% "%UserProfile%/videos/cdncache/encrypted_video.mp4" "%UserProfile%/videos/cdncache/decrypted_video.mp4"
 mp4decrypt --key %kid%:%hex% "%UserProfile%/videos/cdncache/encrypted_audio.m4a" "%UserProfile%/videos/cdncache/decrypted_audio.m4a"
 ffmpeg -hide_banner -t duration -i "%UserProfile%/videos/cdncache/decrypted_video.mp4" -i "%UserProfile%/videos/cdncache/decrypted_audio.m4a" -y -acodec copy -vcodec copy "%UserProfile%/videos/cdncache/output.mp4"
@@ -354,7 +352,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :mpd1
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|  MPD Link DRM  files which have audio and video file types ^|
@@ -365,12 +363,12 @@ set /p mpd=Enter url here :
 set /p kid=Enter video key: 
 set /p hex=Enter audio Key:
 set /p name=Output video name:
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
 set /p vd=Enter video id here :
 set /p ad=Enter audio id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
 cd
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%
 ffmpeg -hide_banner -t duration -decryption_key %kid% -i "%UserProfile%/videos/cdncache/encrypted_video.mp4" -codec copy "%UserProfile%/videos/cdncache/decrypted_video.mp4"
 ffmpeg -hide_banner -t duration -decryption_key %hex% -i "%UserProfile%/videos/cdncache/encrypted_audio.m4a" -codec copy "%UserProfile%/videos/cdncache/decrypted_audio.m4a"
 ffmpeg -hide_banner -t duration -i "%UserProfile%/videos/cdncache/decrypted_video.mp4" -i "%UserProfile%/videos/cdncache/decrypted_audio.m4a" -y -acodec copy -vcodec copy "%UserProfile%/videos/cdncache/output.mp4"
@@ -399,7 +397,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :mpd2
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|      MPD Link DRM both files which have video file type    ^|
@@ -407,12 +405,12 @@ echo                   ^|_______________________________________________________
 echo.
 echo [32m* You can fine these informations by extension                                                      [0m
 set /p mpd=Enter mpd url here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd%
 set /p vd=Enter video here :
 set /p ad=Enter audio here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd%
 cd
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd%
 set /p kid=Enter kid key: 
 set /p hex=Enter hex Key:
 mp4decrypt --key %kid%:%hex% "%UserProfile%/videos/cdncache/encrypted_video.mp4" "%UserProfile%/videos/cdncache/decrypted_video.mp4"
@@ -451,7 +449,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :mp41c
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                  _____________________________________________________________________
 echo                ^|                                                                     ^|
 echo                ^|MP4 Link DRM both files which have video and audio file types (cenc0)^|
@@ -465,13 +463,13 @@ set /p ad=Enter audio url here :
 set /p kid=Enter video key: 
 set /p hex=Enter audio Key:
 set /p name= output video name :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %vd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %vd%
 set /p id1=Enter id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id1% %vd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id1% %vd%
 cd
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %ad%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %ad%
 set /p id2=Enter id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id2% %ad%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id2% %ad%
 mp4decrypt --key %kid%:%hex% "%UserProfile%/videos/cdncache/encrypted_video.mp4" "%UserProfile%/videos/cdncache/decrypted_video.mp4"
 mp4decrypt --key %kid%:%hex% "%UserProfile%/videos/cdncache/encrypted_audio.mp4" "%UserProfile%/videos/cdncache/decrypted_audio.m4a"
 ffmpeg -hide_banner -t duration -i "%UserProfile%/videos/cdncache/decrypted_video.mp4" -i "%UserProfile%/videos/cdncache/decrypted_audio.m4a" -y -acodec copy -vcodec copy "%UserProfile%/videos/cdncache/output.mp4"
@@ -501,7 +499,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :mp41
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ______________________________________________________________
 echo                  ^|                                                              ^|
 echo                  ^|MP4 Link DRM both files which have video and audio file types ^|
@@ -515,13 +513,13 @@ set /p ad=Enter audio url here :
 set /p kid=Enter video key: 
 set /p hex=Enter audio Key:
 set /p name= output video name :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %vd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %vd%
 set /p id1=Enter id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id1% %vd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id1% %vd%
 cd
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %ad%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %ad%
 set /p id2=Enter id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id2% %ad%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.m4a" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id2% %ad%
 ffmpeg -hide_banner -t duration -decryption_key %kid% -i "%UserProfile%/videos/cdncache/encrypted_video.mp4" -codec copy "%UserProfile%/videos/cdncache/decrypted_video.mp4"
 ffmpeg -hide_banner -t duration -decryption_key %hex% -i "%UserProfile%/videos/cdncache/encrypted_audio.m4a" -codec copy "%UserProfile%/videos/cdncache/decrypted_audio.m4a"
 ffmpeg -hide_banner -t duration -i "%UserProfile%/videos/cdncache/decrypted_video.mp4" -i "%UserProfile%/videos/cdncache/decrypted_audio.m4a" -y -acodec copy -vcodec copy "%UserProfile%/videos/cdncache/output.mp4"
@@ -550,7 +548,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :mp42
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|       MP4 Link DRM both files which have video file type   ^|
@@ -561,13 +559,13 @@ echo * When link is videourl, you input audiourl with .m4a
 echo * You can fine decryption keys by extensions   [0m                                               
 set /p vd=Enter video url here :
 set /p ad=Enter audio url here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %vd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %vd%
 set /p id1=Enter id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id1% %vd%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_video.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id1% %vd%
 cd
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %ad%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %ad%
 set /p id2=Enter id here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id2% %ad%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/videos/cdncache/encrypted_audio.mp4" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %id2% %ad%
 set /p kid=Enter kid key: 
 set /p hex=Enter hex Key:
 mp4decrypt --key %kid%:%hex% "%UserProfile%/videos/cdncache/encrypted_video.mp4" "%UserProfile%/videos/cdncache/decrypted_video.mp4"
@@ -609,7 +607,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :Unp
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                                         Unprotected Downloader                       
 echo                   _______________________________________________________________
 echo                  ^|                                                               ^|
@@ -636,18 +634,18 @@ if /I "[%ch%]"=="[a]" goto :Asur_MENU
 
 :dsv
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                        Direct Download                     ^|
 echo                   ^|____________________________________________________________^|
 echo.
 set /p yt1=Enter url here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %yt1%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %yt1%
 set /p vd=Enter id :
 set /p reu=Enter name :
 set /p ty=Enter the file type wich shows with id :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/downloads/%reu%.%ty%" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %yt1%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/downloads/%reu%.%ty%" --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %yt1%
 echo [32mIf the video is successfully downloaded, it will be included in your downloads.
 echo If not, check out what happened by above[0m
 echo __________________________________________________________________________________________________
@@ -667,7 +665,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :dsad
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                   Advanced Video Downloader                ^|
@@ -686,7 +684,7 @@ if /I "[%ch%]"=="[3]" goto :Unp
 
 :vid
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|            Both files which have video file type           ^|
@@ -694,14 +692,14 @@ echo                   ^|_______________________________________________________
 echo.
 cd %UserProfile%/videos/cdncache/
 set /p mpdr=Enter url here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpdr%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpdr%
 set /p vdr=Enter video here :
 set /p vdr1=Enter video type:
 set /p adr=Enter audio here :
 set /p adr1=Enter audio type:
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/ev.%vdr1% --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vdr% %mpdr%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/ev.%vdr1% --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vdr% %mpdr%
 cd
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/ea.%adr1% --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %adr% %mpdr%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/ea.%adr1% --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %adr% %mpdr%
 echo * You can use low bit rate to speed up (kbs)                                                        
 echo *                  8   16  32   64   128     256    320                                            
 echo *                  low quality  normal     high quality                                             
@@ -736,7 +734,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :cor
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|       The Files which have audio and video file types      ^|
@@ -744,14 +742,14 @@ echo                   ^|_______________________________________________________
 echo.
 cd %UserProfile%/videos/cdncache/
 set /p mpd4=Enter url here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd4%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %mpd4%
 set /p vd=Enter video id here :
 set /p vd1=Enter video type   :
 set /p ad=Enter audio id here :
 set /p ad1=Enter audio type   :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/ev.%vd1% --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd4%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/ev.%vd1% --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %mpd4%
 cd
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/ea.%ad1% --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd4%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/ea.%ad1% --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %ad% %mpd4%
 ffmpeg -hide_banner -t duration -i %UserProfile%/videos/cdncache/ev.%vd1% -i %UserProfile%/videos/cdncache/ea.%ad1% -y -acodec copy -vcodec copy %UserProfile%/videos/cdncache/output.mp4
 move %UserProfile%/videos/cdncache/output.mp4 "%UserProfile%/downloads"
 set /p name= Change the name of video:
@@ -779,21 +777,21 @@ if /I "[%ch%]"=="[4]" goto :EOF
 :dsa
 cls
 cd %UserProfile%/videos/cdncache/
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                       Audio Downloader                     ^|
 echo                   ^|____________________________________________________________^|
 echo.
 set /p ytn=Enter url here :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %ytn%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %ytn%
 echo  [32m* Enter ID as .m4a ID Which have highest size                                                         
 echo  * Audio Qualities                                                                                     
 echo  *   32  64  128  256  320   [0m                                                                                           
 set /p vdme=Enter id            :
 set /p q8=Enter sound quality :
 set /p n9=Enter a name        :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/a2e.m4a --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vdme% %ytn%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o %UserProfile%/videos/cdncache/a2e.m4a --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vdme% %ytn%
 ffmpeg -hide_banner -t duration -i %UserProfile%/videos/cdncache/a2e.m4a -ar 44100 -ac 2 -b:a %q8%k "%UserProfile%/downloads/%n9%.mp3"
 del /f %UserProfile%/videos/cdncache/a2e.m4a
 echo [32mIf the video is successfully downloaded, it will be included in your downloads.
@@ -815,7 +813,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :yt
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                                          Youtube Downloader                       
 echo                   _______________________________________________________________
 echo                  ^|                                                               ^|
@@ -840,11 +838,11 @@ if /I "[%ch%]"=="[2]" goto :ytad
 if /I "[%ch%]"=="[3]" goto :yta
 if /I "[%ch%]"=="[4]" goto :ytp
 echo.
-if /I "[%ch%]"=="[5]" goto :Asur_MENU
+if /I "[%ch%]"=="[a]" goto :Asur_MENU
 
 :ytv
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                    Youtube Direct Download                 ^|
@@ -852,7 +850,7 @@ echo                   ^|_______________________________________________________
 echo.
 set /p yt1=Enter url here :
 cd %UserProfile%/downloads
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %yt1%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --no-check-certificate -F %yt1%
 echo  [32m*Right corner of the chart you can see "More" and "Info" rows.The More row shows the quality of video 
 echo  *You can enter a ID Which have a space on INFO row. When you enter other one, you can see errors in it
 echo  *For easy to download video use this numbers as id                                                    
@@ -861,7 +859,7 @@ echo  * 360p - 18
 echo  * 720p - 22                                                                                         
 echo  *To download other quality video , go to Youtube Advance Download        [0m                             
 set /p vd=Enter id :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %yt1%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --no-warnings --external-downloader aria2c --allow-unplayable-formats --no-check-certificate --console-title -f %vd% %yt1%
 echo [32mIf the video is successfully downloaded, it will be included in your downloads.
 echo If not, check out what happened by above[0m
 echo __________________________________________________________________________________________________
@@ -895,7 +893,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :yta
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                    Youtube Audio Download                  ^|
@@ -910,7 +908,7 @@ echo [32m *Insert a value between                                 [0m
 echo [32m     0 (better) and 9 (worse)                            [0m
 echo [32m  for VBR or a specific bitrate like 128K (default 5)    [0m
 set /p yt4=Enter quality of audio :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --no-warnings --no-check-certificate -x --audio-format %yt3% --audio-quality %yt4% --external-downloader aria2c --add-metadata --embed-thumbnail --parse-metadata FROM:TO %yt2%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --no-warnings --no-check-certificate -x --audio-format %yt3% --audio-quality %yt4% --external-downloader aria2c --add-metadata --embed-thumbnail --parse-metadata FROM:TO %yt2%
 cd ..
 echo __________________________________________________________________________________________________
 echo 1 - Download Another one.
@@ -929,7 +927,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :ytp
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                  YoutubePlaylist Download                  ^|
@@ -945,7 +943,7 @@ echo  * 144p - 17
 echo  * 360p - 18          
 echo  * 720p - 22 [0m        
 set /p vd=Enter id :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --no-warnings --external-downloader aria2c --console-title -f %vd% %yt5%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --no-warnings --external-downloader aria2c --console-title -f %vd% %yt5%
 echo [32mIf the video is successfully downloaded, it will be included in your downloads.
 echo If not, check out what happened by above[0m
 echo __________________________________________________________________________________________________
@@ -965,7 +963,7 @@ if /I "[%ch%]"=="[4]" goto :EOF
 
 :zd
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                    Zoom Video Downloader                   ^|
@@ -973,11 +971,11 @@ echo                   ^|_______________________________________________________
 echo.
 set /p yt1=Enter url here :
 set /p ytw=Enter passcode :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --video-password %ytw% --no-check-certificate -F %yt1%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title --external-downloader aria2c --no-warnings --allow-unplayable-formats --video-password %ytw% --no-check-certificate -F %yt1%
 set /p vd=Enter id :
 set /p reu=Enter name :
 set /p ty=Enter the file type wich shows with id :
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/downloads/%reu%.%ty%" --no-warnings --external-downloader aria2c --allow-unplayable-formats --video-password %ytw% --no-check-certificate --console-title -F %vd% %yt1%
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -o "%UserProfile%/downloads/%reu%.%ty%" --no-warnings --external-downloader aria2c --allow-unplayable-formats --video-password %ytw% --no-check-certificate --console-title -F %vd% %yt1%
 echo [32mIf the video is successfully downloaded, it will be included in your downloads.
 echo If not, check out what happened by above[0m
 echo __________________________________________________________________________________________________
@@ -996,7 +994,7 @@ if /I "[%ch%]"=="[3]" goto :EOF
 
 :torrent
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                     Download Manager                       ^|
@@ -1022,7 +1020,7 @@ if /I "[%ch%]"=="[3]" goto :EOF
 
 :gd
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                                            Gdrive File Handle                       
 echo                   _______________________________________________________________
 echo                  ^|Before you use this, you must sign in to gdrive                ^|
@@ -1056,7 +1054,7 @@ goto :Asur_MENU
 
 :gsi
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                     Sign in to Gdrive                      ^|
@@ -1095,7 +1093,7 @@ echo.
 if /I "[%ch%]"=="[3]" goto :EOF
 
 :gufile
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                  Gdrive - Upload a file                    ^|
@@ -1156,7 +1154,7 @@ if /I "[%ch%]"=="[3]" goto :EOF
 
 :spotd
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                                          Spotify Downlaoder                     
 echo                   _______________________________________________________________
 echo [32m "Enter url as spotify tracks/albums/playlists/artists url." [0m
@@ -1186,7 +1184,8 @@ echo                              ______________________________________________
 echo                            ^|                                                            ^|
 echo                            ^|                            Update                          ^|
 echo                            ^|____________________________________________________________^|
-yt-dlp --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -U --progress
+yt-dlp --write-sub --youtube-skip-dash-manifest --no-wait-for-video --progress --console-title -U --progress
+d-fi -U
 echo __________________________________________________________________________________________________
 echo 1 - Update again
 echo 2 - Go Back
@@ -1202,7 +1201,7 @@ if /I "[%ch%]"=="[3]" goto :EOF
 
 :sp
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                         Requirments                        ^|
@@ -1210,7 +1209,7 @@ echo                   ^|_______________________________________________________
 echo.
 echo !!!Setup  !!!
 echo # Reuirments
-echo python ffmpeg yt-dlp aria2c youtube-dl spot-dl
+echo python ffmpeg yt-dlp --write-sub aria2c youtube-dl spot-dl
 echo You must manually install python and spotdl in order to use spotify downloader.
 pause.
 echo __________________________________________________________________________________________________
@@ -1226,7 +1225,7 @@ if /I "[%ch%]"=="[2]" goto :EOF
 
 :rs
 cls
-mode con cols=98 lines=32
+mode con cols=115 lines=40
 echo                    ____________________________________________________________
 echo                   ^|                                                            ^|
 echo                   ^|                           Read It                          ^|
@@ -1236,6 +1235,8 @@ echo ## Legal Notice
 echo Educational purposes only. Downloading DRM'ed materials may violate their Terms of Service.
 echo If you enjoyed using the script, a star or a follow will be highly appreciated! 😎
 echo (Spotify Downloader)In some countries , this one isn't work . When you face it,use a vpn software.
+echo ## For more help refer below link
+echo https://github.com/Asur2-5356202/AsurDownloader/wiki
 pause.
 echo __________________________________________________________________________________________________
 echo 1 - Go Back
@@ -1249,4 +1250,47 @@ echo.
 if /I "[%ch%]"=="[2]" goto :EOF
 
 
+:dfi
+cls
+mode con cols=115 lines=40
+echo                                            Deezer Downloader                       
+echo                   _______________________________________________________________
+echo                  ^|Before you use this, you must enter your arl                   ^|
+echo                  ^|[32m      [0] arl                                                  [0m^|
+echo                  ^|[32m                                                               [0m^|
+echo                  ^|[32m      [1] Download a song                                      [0m^|
+echo                  ^|      ___________________________________________________      ^|
+echo                  ^|                                                               ^|
+echo                  ^|[36m      [a] Go back                 [b] Quit                     [0m^|
+echo                  ^|                                                               ^|
+echo                  ^|_______________________________________________________________^|
+echo.
+echo.
+echo.
+echo [1mEnter choice [0/1/a/b][0m
+set /p choice="Choice: "
+echo.
+if /I "[%choice%]"=="[0]" goto :darl
+if /I "[%choice%]"=="[1]" goto :dfid
+if /I "[%choice%]"=="[a]" goto :Asur_MENU
+echo.
+if /I "[%choice%]"=="[b]" goto :EOF
+goto :Asur_MENU
+
+:darl
+cls
+mode con cols=115 lines=40
+echo " Didn't now about deezer arl? Refer below link"
+echo https://github.com/Asur2-5356202/AsurDownloader/wiki
+set /p arl="Enter your deezer-arl here: "
+d-fi -a %arl%
+pause.
+goto :dfi
+
+:dfid
+cls
+mode con cols=115 lines=40
+d-fi
+pause.
+goto :dfi
 
