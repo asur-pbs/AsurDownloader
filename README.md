@@ -66,6 +66,6 @@ This is a small program which wrote with batch programming in order to make easy
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <a href="https://github.com/Asur2-5356202/AsurDownloader">
-    <img src="images/example.png" alt="Logo" width="100" height="100">
+    <img src="images/ad.png" alt="Logo" width="100" height="100">
   </a>
 
