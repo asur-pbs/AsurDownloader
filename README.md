@@ -49,7 +49,6 @@ This is a small program which wrote with batch programming in order to make easy
 * [Spotdl](https://nextjs.org/)
 * [Aria2](https://aria2.github.io)
 * [YT-DLP](https://github.com/yt-dlp/yt-dlp)
-* [Youtube-dl](https://github.com/ytdl-org/youtube-dl)
 * [FFmpeg](https://ffmpeg.org)
 * [Bento4](https://www.bento4.com)
 * [gdrive](https://github.com/prasmussen/gdrive)
